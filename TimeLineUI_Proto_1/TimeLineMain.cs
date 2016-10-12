@@ -26,6 +26,8 @@ namespace TimeLineUI_Proto_1
             //dataGridView3.ColumnHeadersVisible = false;
             dataGridView3.RowHeadersVisible = false;
 
+            //pictureBox1.Image = Image.FromFile();
+
             for (int i = 0; i < 30; i++)
             {
                 var editColumn = new DataGridViewTextBoxColumn
@@ -40,13 +42,20 @@ namespace TimeLineUI_Proto_1
 
             for (int i = 0; i < 30; i++)
             {
+                string hText = ":";
+                if ((i % 2) == 0)
+                    hText = ".";
+
                 var editColumn = new DataGridViewTextBoxColumn
                 {
                     CellTemplate = new DataGridViewTextBoxCell(),
                     Width = 20,
-                    HeaderText = "|",
+                    HeaderText = hText,
+                    //Visible = false,
                     Resizable = System.Windows.Forms.DataGridViewTriState.False
                 };
+
+                
 
                 dataGridView3.Columns.Add(editColumn);
             }
