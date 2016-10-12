@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TimeLineUI_Proto_1
 {
-    public partial class Form1 : Form
+    public partial class TimeLineMain : Form
     {
-        public Form1()
+        public TimeLineMain()
         {
             InitializeComponent();
         }

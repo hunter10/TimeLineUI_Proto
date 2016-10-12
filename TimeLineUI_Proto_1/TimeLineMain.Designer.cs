@@ -1,6 +1,6 @@
 ﻿namespace TimeLineUI_Proto_1
 {
-    partial class Form1
+    partial class TimeLineMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // TimeLineMain
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "TimeLineMain";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
