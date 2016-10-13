@@ -85,6 +85,9 @@
   <ItemGroup>
     <Content Include="PNGS\layer-novisible.png" />
     <Content Include="PNGS\lock-5.png" />
+    <None Include="PNGS\emblem-new.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\layer-novisible.png" />
     <None Include="Resources\lock-5.png" />
   </ItemGroup>

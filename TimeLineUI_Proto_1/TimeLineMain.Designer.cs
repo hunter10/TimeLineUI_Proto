@@ -34,21 +34,18 @@
             this.lockItem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.viewItem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.buttonItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.BtnTimeStop = new System.Windows.Forms.Button();
+            this.BtnStop = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.BtnLineAdd = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.BtnTimeAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -93,59 +90,9 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
+            this.button1.Text = "Object Add";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.ColumnHeadersVisible = false;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.buttonItem});
-            this.dataGridView2.Location = new System.Drawing.Point(359, 89);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(491, 174);
-            this.dataGridView2.TabIndex = 3;
-            this.dataGridView2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dataGridView2_Scroll);
-            // 
-            // buttonItem
-            // 
-            this.buttonItem.HeaderText = "Buttons";
-            this.buttonItem.Name = "buttonItem";
-            this.buttonItem.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.buttonItem.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.buttonItem.Width = 20;
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView3.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dataGridView3.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1});
-            this.dataGridView3.Location = new System.Drawing.Point(359, 69);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dataGridView3.RowHeadersVisible = false;
-            this.dataGridView3.RowTemplate.Height = 23;
-            this.dataGridView3.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridView3.Size = new System.Drawing.Size(491, 21);
-            this.dataGridView3.TabIndex = 4;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = ".";
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            this.Column1.Width = 20;
             // 
             // button2
             // 
@@ -165,22 +112,24 @@
             this.button3.Text = "|<";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // BtnTimeStop
             // 
-            this.button4.Location = new System.Drawing.Point(80, 60);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(40, 25);
-            this.button4.TabIndex = 7;
-            this.button4.UseVisualStyleBackColor = true;
+            this.BtnTimeStop.Location = new System.Drawing.Point(80, 60);
+            this.BtnTimeStop.Name = "BtnTimeStop";
+            this.BtnTimeStop.Size = new System.Drawing.Size(40, 25);
+            this.BtnTimeStop.TabIndex = 7;
+            this.BtnTimeStop.UseVisualStyleBackColor = true;
+            this.BtnTimeStop.Click += new System.EventHandler(this.BtnTimeStop_Click);
             // 
-            // button5
+            // BtnStop
             // 
-            this.button5.Location = new System.Drawing.Point(120, 60);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(40, 25);
-            this.button5.TabIndex = 8;
-            this.button5.Text = ">";
-            this.button5.UseVisualStyleBackColor = true;
+            this.BtnStop.Location = new System.Drawing.Point(120, 60);
+            this.BtnStop.Name = "BtnStop";
+            this.BtnStop.Size = new System.Drawing.Size(40, 25);
+            this.BtnStop.TabIndex = 8;
+            this.BtnStop.Text = ">";
+            this.BtnStop.UseVisualStyleBackColor = true;
+            this.BtnStop.Click += new System.EventHandler(this.BtnStop_Click);
             // 
             // button6
             // 
@@ -222,28 +171,58 @@
             this.pictureBox2.TabIndex = 12;
             this.pictureBox2.TabStop = false;
             // 
+            // BtnLineAdd
+            // 
+            this.BtnLineAdd.Location = new System.Drawing.Point(763, 37);
+            this.BtnLineAdd.Name = "BtnLineAdd";
+            this.BtnLineAdd.Size = new System.Drawing.Size(75, 23);
+            this.BtnLineAdd.TabIndex = 14;
+            this.BtnLineAdd.Text = "Line";
+            this.BtnLineAdd.UseVisualStyleBackColor = true;
+            this.BtnLineAdd.Click += new System.EventHandler(this.BtnLineAdd_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(359, 89);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(489, 174);
+            this.flowLayoutPanel1.TabIndex = 15;
+            // 
+            // BtnTimeAdd
+            // 
+            this.BtnTimeAdd.Location = new System.Drawing.Point(671, 7);
+            this.BtnTimeAdd.Name = "BtnTimeAdd";
+            this.BtnTimeAdd.Size = new System.Drawing.Size(75, 23);
+            this.BtnTimeAdd.TabIndex = 16;
+            this.BtnTimeAdd.Text = "Time Add";
+            this.BtnTimeAdd.UseVisualStyleBackColor = true;
+            this.BtnTimeAdd.Click += new System.EventHandler(this.BtnTimeAdd_Click);
+            // 
             // TimeLineMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 263);
+            this.Controls.Add(this.BtnTimeAdd);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.BtnLineAdd);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.BtnStop);
+            this.Controls.Add(this.BtnTimeStop);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.dataGridView3);
-            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "TimeLineMain";
             this.Text = "Time Line";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -256,18 +235,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameItem;
         private System.Windows.Forms.DataGridViewCheckBoxColumn lockItem;
         private System.Windows.Forms.DataGridViewCheckBoxColumn viewItem;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn buttonItem;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button BtnTimeStop;
+        private System.Windows.Forms.Button BtnStop;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button BtnLineAdd;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button BtnTimeAdd;
     }
 }
 
