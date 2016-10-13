@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimeLineMain));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nameItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lockItem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.viewItem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -45,44 +42,15 @@
             this.BtnLineAdd = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.BtnTimeAdd = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.replayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ColumnHeadersVisible = false;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameItem,
-            this.lockItem,
-            this.viewItem});
-            this.dataGridView1.Location = new System.Drawing.Point(0, 89);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(353, 174);
-            this.dataGridView1.TabIndex = 1;
-            // 
-            // nameItem
-            // 
-            this.nameItem.HeaderText = "Name";
-            this.nameItem.Name = "nameItem";
-            this.nameItem.Width = 250;
-            // 
-            // lockItem
-            // 
-            this.lockItem.HeaderText = "Lock";
-            this.lockItem.Name = "lockItem";
-            this.lockItem.Width = 50;
-            // 
-            // viewItem
-            // 
-            this.viewItem.HeaderText = "View";
-            this.viewItem.Name = "viewItem";
-            this.viewItem.Width = 50;
             // 
             // button1
             // 
@@ -202,11 +170,47 @@
             this.BtnTimeAdd.UseVisualStyleBackColor = true;
             this.BtnTimeAdd.Click += new System.EventHandler(this.BtnTimeAdd_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem,
+            this.stopToolStripMenuItem,
+            this.replayToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(110, 70);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            // 
+            // stopToolStripMenuItem
+            // 
+            this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.stopToolStripMenuItem.Text = "Stop";
+            // 
+            // replayToolStripMenuItem
+            // 
+            this.replayToolStripMenuItem.Name = "replayToolStripMenuItem";
+            this.replayToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.replayToolStripMenuItem.Text = "Replay";
+            // 
+            // treeView1
+            // 
+            this.treeView1.Location = new System.Drawing.Point(-1, 91);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(354, 172);
+            this.treeView1.TabIndex = 17;
+            // 
             // TimeLineMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 263);
+            this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.BtnTimeAdd);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.BtnLineAdd);
@@ -219,22 +223,17 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
             this.Name = "TimeLineMain";
             this.Text = "Time Line";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameItem;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn lockItem;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn viewItem;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button BtnTimeStop;
@@ -246,6 +245,11 @@
         private System.Windows.Forms.Button BtnLineAdd;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button BtnTimeAdd;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem replayToolStripMenuItem;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }
 

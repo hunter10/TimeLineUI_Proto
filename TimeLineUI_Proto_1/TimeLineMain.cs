@@ -33,8 +33,8 @@ namespace TimeLineUI_Proto_1
             smallIcon = Image.FromFile(@"D:\Work\GitProject\TimeLineUI_Proto\TimeLineUI_Proto_1\PNGS\emblem-new.png");
             smallIconPos = new Point(0, 0);
 
-            dataGridView1.ColumnHeadersVisible = false;
-            dataGridView1.RowHeadersVisible = false;
+            //dataGridView1.ColumnHeadersVisible = false;
+            //dataGridView1.RowHeadersVisible = false;
 
             for (int i = 0; i < 30; i++)
             {
@@ -71,7 +71,14 @@ namespace TimeLineUI_Proto_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Add("Object-1", true, false);
+            //dataGridView1.Rows.Add("Object-1", true, false);
+            treeView1.Nodes.Add("Books");
+            treeView1.Nodes.Add("Papers");
+            treeView1.Nodes.Add("Folders");
+
+            treeView1.Nodes[0].Nodes.Add("Book1");
+            treeView1.Nodes[0].Nodes.Add("Book2");
+            treeView1.Nodes[0].Nodes.Add("Book3");
         }
 
         private void BtnLineAdd_Click(object sender, EventArgs e)
