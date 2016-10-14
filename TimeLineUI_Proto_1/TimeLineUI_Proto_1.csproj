@@ -83,6 +83,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="PNGS\go-first.png" />
+    <Content Include="PNGS\go-last.png" />
     <Content Include="PNGS\layer-novisible.png" />
     <Content Include="PNGS\lock-5.png" />
     <None Include="PNGS\emblem-new.png">

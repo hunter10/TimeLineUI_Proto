@@ -33,21 +33,21 @@
             this.nameItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lockItem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.viewItem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnObjectAdd = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.BtnTimeStop = new System.Windows.Forms.Button();
             this.BtnStop = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.LockIcon = new System.Windows.Forms.PictureBox();
+            this.ViewIcon = new System.Windows.Forms.PictureBox();
             this.BtnLineAdd = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.BtnTimeAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LockIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -84,15 +84,15 @@
             this.viewItem.Name = "viewItem";
             this.viewItem.Width = 50;
             // 
-            // button1
+            // BtnObjectAdd
             // 
-            this.button1.Location = new System.Drawing.Point(763, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Object Add";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BtnObjectAdd.Location = new System.Drawing.Point(763, 7);
+            this.BtnObjectAdd.Name = "BtnObjectAdd";
+            this.BtnObjectAdd.Size = new System.Drawing.Size(75, 23);
+            this.BtnObjectAdd.TabIndex = 2;
+            this.BtnObjectAdd.Text = "Object Add";
+            this.BtnObjectAdd.UseVisualStyleBackColor = true;
+            this.BtnObjectAdd.Click += new System.EventHandler(this.BtnObjectAdd_Click);
             // 
             // button2
             // 
@@ -149,27 +149,27 @@
             this.button7.Text = ">>|";
             this.button7.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // LockIcon
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(270, 67);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
+            this.LockIcon.Image = ((System.Drawing.Image)(resources.GetObject("LockIcon.Image")));
+            this.LockIcon.InitialImage = null;
+            this.LockIcon.Location = new System.Drawing.Point(270, 67);
+            this.LockIcon.Name = "LockIcon";
+            this.LockIcon.Size = new System.Drawing.Size(16, 16);
+            this.LockIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.LockIcon.TabIndex = 11;
+            this.LockIcon.TabStop = false;
             // 
-            // pictureBox2
+            // ViewIcon
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.InitialImage = null;
-            this.pictureBox2.Location = new System.Drawing.Point(317, 67);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 12;
-            this.pictureBox2.TabStop = false;
+            this.ViewIcon.Image = ((System.Drawing.Image)(resources.GetObject("ViewIcon.Image")));
+            this.ViewIcon.InitialImage = null;
+            this.ViewIcon.Location = new System.Drawing.Point(317, 67);
+            this.ViewIcon.Name = "ViewIcon";
+            this.ViewIcon.Size = new System.Drawing.Size(16, 16);
+            this.ViewIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ViewIcon.TabIndex = 12;
+            this.ViewIcon.TabStop = false;
             // 
             // BtnLineAdd
             // 
@@ -210,28 +210,28 @@
             this.Controls.Add(this.BtnTimeAdd);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.BtnLineAdd);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.ViewIcon);
+            this.Controls.Add(this.LockIcon);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.BtnStop);
             this.Controls.Add(this.BtnTimeStop);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnObjectAdd);
             this.Controls.Add(this.dataGridView1);
             this.Name = "TimeLineMain";
             this.Text = "Time Line";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LockIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ViewIcon)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnObjectAdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameItem;
         private System.Windows.Forms.DataGridViewCheckBoxColumn lockItem;
         private System.Windows.Forms.DataGridViewCheckBoxColumn viewItem;
@@ -241,8 +241,8 @@
         private System.Windows.Forms.Button BtnStop;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox LockIcon;
+        private System.Windows.Forms.PictureBox ViewIcon;
         private System.Windows.Forms.Button BtnLineAdd;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button BtnTimeAdd;

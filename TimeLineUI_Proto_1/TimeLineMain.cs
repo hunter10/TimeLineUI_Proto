@@ -14,13 +14,23 @@ namespace TimeLineUI_Proto_1
     {
         private List<Line> _Lines = new List<Line>();
         Timer timer = new System.Windows.Forms.Timer();
-        PictureBox p1 = new PictureBox();
+        PictureBox timeLinePicBox = new PictureBox();
+        
+        //private Bitmap m_OriginalImage = null;
+        //private int X0, Y0, X1, Y1;
+        //private bool SelectingArea = false;
+        //private Bitmap SelectedImage = null;
+        //private Graphics SelectedGraphics = null;
 
-        Graphics g;
-        Bitmap canvas;
-        Image smallIcon;
 
-        Point smallIconPos;
+        Boolean mouseClicked;
+        Point startPoint = new Point();
+        Point endPoint = new Point();
+        Rectangle rectCropArea;
+
+        ICON_TYPE selectType = ICON_TYPE.NONE;
+
+        private List<TimeObject> timeObj_List = new List<TimeObject>();
 
         public TimeLineMain()
         {
@@ -30,9 +40,6 @@ namespace TimeLineUI_Proto_1
 
         public void DataGridViewInit()
         {
-            smallIcon = Image.FromFile(@"D:\Work\GitProject\TimeLineUI_Proto\TimeLineUI_Proto_1\PNGS\emblem-new.png");
-            smallIconPos = new Point(0, 0);
-
             dataGridView1.ColumnHeadersVisible = false;
             dataGridView1.RowHeadersVisible = false;
 
@@ -52,32 +59,49 @@ namespace TimeLineUI_Proto_1
                 };
             }
 
-            canvas = new Bitmap(4890, 174);
 
-            p1.Height = 174;
-            p1.Width = 4890;
-            p1.SizeMode = PictureBoxSizeMode.Normal;
-            p1.BackColor = Color.Transparent;
-            p1.Image = canvas;
-            p1.Paint += new PaintEventHandler(p1_Paint);
-            p1.MouseClick += new MouseEventHandler(p1_Click);
-            p1.MouseMove += new MouseEventHandler(p1_MouseMove);
 
-            //g = this.CreateGraphics();
-            g = Graphics.FromImage(canvas);
+            timeLinePicBox.Height = 174;
+            timeLinePicBox.Width = 4890;
+            timeLinePicBox.SizeMode = PictureBoxSizeMode.Normal;
+            timeLinePicBox.BackColor = Color.Transparent;
+            timeLinePicBox.Paint += new PaintEventHandler(timeLinePicBox_Paint);
+            timeLinePicBox.MouseClick += new MouseEventHandler(timeLinePicBox_MouseClick);
+            timeLinePicBox.MouseMove += new MouseEventHandler(timeLinePicBox_MouseMove);
+            timeLinePicBox.MouseUp += new MouseEventHandler(timeLinePicBox_MouseUp);
+            timeLinePicBox.MouseDown += new MouseEventHandler(timeLinePicBox_MouseDown);
 
-            flowLayoutPanel1.Controls.Add(p1);
+            //m_OriginalImage = new Bitmap(timeLinePicBox.Image);
+            //m_OriginalImage = new Bitmap(timeLinePicBox.Width, timeLinePicBox.Height);
+
+            // 이것때문에 PictureBox가 자동으로 스크롤됨
+            flowLayoutPanel1.Controls.Add(timeLinePicBox);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnObjectAdd_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Add("Object-1", true, false);
+            TimeObject obj = new TimeObject();
+            obj.Name = "test 1";
+            obj.Lock = true;
+            obj.View = false;
+            timeObj_List.Add(obj);
+
+            // 좌측 판넬 세팅
+            dataGridView1.Rows.Add(timeObj_List[0].Name, 
+                                   timeObj_List[0].Lock, 
+                                   timeObj_List[0].View);
+
+            // 우측 판넬 세팅
+            //timeObj_List[0].DrawIcon(g, timeObj_List[0].StartPosIcon, timeObj_List[0].StartPos);
+            //timeObj_List[0].DrawIcon(g, timeObj_List[0].EndPosIcon, timeObj_List[0].EndPos);
+            timeLinePicBox.Invalidate();
         }
+
 
         private void BtnLineAdd_Click(object sender, EventArgs e)
         {
             _Lines.Add(new TimeLineUI_Proto_1.TimeLineMain.Line(new Point(20, 0), new Point(20, 300)));
-            p1.Invalidate();
+            timeLinePicBox.Invalidate();
         }
 
         public class Line
@@ -92,30 +116,166 @@ namespace TimeLineUI_Proto_1
             }
         }
 
-        private void p1_Click(object sender, EventArgs e)
+        private Rectangle MakeRectangle(int x0, int y0, int x1, int y1)
         {
-            var mouseEventArgs = e as MouseEventArgs;
-            if (mouseEventArgs != null)
-                Console.WriteLine(string.Format("{0},{1}", mouseEventArgs.X, mouseEventArgs.Y));
+            return new Rectangle(
+                Math.Min(x0, x1),
+                Math.Min(y0, y1),
+                Math.Abs(x0 - x1),
+                Math.Abs(y0 - y1));
         }
 
-        private void p1_MouseMove(object sender, EventArgs e)
+        private void timeLinePicBox_MouseClick(object sender, MouseEventArgs e)
         {
-            //var mouseEventArgs = e as MouseEventArgs;
-            //if (mouseEventArgs != null)
-            //    Console.WriteLine(string.Format("{0},{1}", mouseEventArgs.X, mouseEventArgs.Y));
+            timeLinePicBox.Refresh();
+
+            // 아이콘 선택처리
+            //Console.WriteLine(string.Format("({0},{1})", e.X, e.Y));
         }
 
-        private void p1_Paint(object sender, PaintEventArgs e)
+        int startposoffset = -1;
+        int endposoffset = -1;
+        private void timeLinePicBox_MouseDown(object sender, MouseEventArgs e)
         {
-            //e.Graphics.Clear(Color.Transparent);
-            foreach (Line l in _Lines)
+            mouseClicked = true;
+
+            startPoint.X = e.X;
+            startPoint.Y = e.Y;
+            endPoint.X = -1;
+            endPoint.Y = -1;
+
+            rectCropArea = new Rectangle(new Point(e.X, e.Y), new Size());
+
+            bool result = timeObj_List[0].CheckIconPos(new Point(e.X, e.Y), out selectType);
+
+            if (selectType == ICON_TYPE.FRAME_BODY)
             {
-                e.Graphics.DrawLine(Pens.Red, l.Point1, l.Point2);
+                startposoffset = e.X - timeObj_List[0].StartPos.X;
+                endposoffset = timeObj_List[0].EndPos.X - e.X;
             }
 
-            e.Graphics.DrawImage(smallIcon, new Rectangle(smallIconPos.X, smallIconPos.Y, 16, 16));
-            //e.Graphics.DrawImage(smallIcon, new Rectangle(50, 0, 16, 16));
+            Console.WriteLine("type={0}", selectType);
+        }
+
+        private void timeLinePicBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            /*
+            // 러버밴드 그리기
+            Point ptCurrent = new Point(e.X, e.Y);
+
+            if (mouseClicked)
+            {
+                if (endPoint.X != -1)
+                {
+                    // Display Coordinates
+                    //X1.Text = startPoint.X.ToString();
+                    //Y1.Text = startPoint.Y.ToString();
+                    //X2.Text = e.X.ToString();
+                    //Y2.Text = e.Y.ToString();
+                }
+
+                endPoint = ptCurrent;
+
+                if (e.X > startPoint.X && e.Y > startPoint.Y)
+                {
+                    rectCropArea.Width = e.X - startPoint.X;
+                    rectCropArea.Height = e.Y - startPoint.Y;
+                }
+                else if (e.X < startPoint.X && e.Y > startPoint.Y)
+                {
+                    rectCropArea.Width = startPoint.X - e.X;
+                    rectCropArea.Height = e.Y - startPoint.Y;
+                    rectCropArea.X = e.X;
+                    rectCropArea.Y = startPoint.Y;
+                }
+                else if (e.X > startPoint.X && e.Y < startPoint.Y)
+                {
+                    rectCropArea.Width = e.X - startPoint.X;
+                    rectCropArea.Height = startPoint.Y - e.Y;
+                    rectCropArea.X = startPoint.X;
+                    rectCropArea.Y = e.Y;
+                }
+                else
+                {
+                    rectCropArea.Width = startPoint.X - e.X;
+                    rectCropArea.Height = startPoint.Y - e.Y;
+                    rectCropArea.X = e.X;
+                    rectCropArea.Y = e.Y;
+                }
+
+                timeLinePicBox.Refresh();
+            }
+            */
+
+            //Point ptCurrent = new Point(e.X, e.Y);
+
+            if (mouseClicked)
+            {
+                if(selectType == ICON_TYPE.START_POS)
+                    timeObj_List[0].StartPos = new Point(e.X, timeObj_List[0].StartPos.Y);
+                else if (selectType == ICON_TYPE.END_POS)
+                    timeObj_List[0].EndPos = new Point(e.X, timeObj_List[0].EndPos.Y);
+                else
+                {
+                    //int startposoffset = e.X - timeObj_List[0].StartPos.X;
+                    //int endposoffset = timeObj_List[0].EndPos.X - e.X;
+                    
+                    timeObj_List[0].StartPos = new Point(e.X - startposoffset, timeObj_List[0].StartPos.Y);
+                    timeObj_List[0].EndPos = new Point(e.X + endposoffset, timeObj_List[0].EndPos.Y);
+
+                    
+                }
+
+                timeLinePicBox.Refresh();
+            }
+        }
+
+        private void timeLinePicBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            //if (!SelectingArea) return;
+            //SelectingArea = false;
+            //SelectedImage = null;
+            //SelectedGraphics = null;
+            //timeLinePicBox.Image = m_OriginalImage;
+            //timeLinePicBox.Refresh();
+
+            //mouseClicked = false;
+
+
+            mouseClicked = false;
+
+            if (endPoint.X != -1)
+            {
+                Point currentPoint = new Point(e.X, e.Y);
+                // Display coordinates
+                //X2.Text = e.X.ToString();
+                //Y2.Text = e.Y.ToString();
+
+            }
+            endPoint.X = -1;
+            endPoint.Y = -1;
+            startPoint.X = -1;
+            startPoint.Y = -1;
+        }
+
+        private void timeLinePicBox_Paint(object sender, PaintEventArgs e)
+        {
+            //foreach (Line l in _Lines)
+            //{
+            //    e.Graphics.DrawLine(Pens.Red, l.Point1, l.Point2);
+            //}
+
+            if (timeObj_List.Count > 0)
+            {
+                timeObj_List[0].DrawIcon(e.Graphics, ICON_TYPE.START_POS);
+                timeObj_List[0].DrawIcon(e.Graphics, ICON_TYPE.END_POS);
+
+                timeObj_List[0].DrawFrameBox(e.Graphics);
+            }
+
+            Pen drawLine = new Pen(Color.Red);
+            drawLine.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            e.Graphics.DrawRectangle(drawLine, rectCropArea);
         }
 
         private void BtnStop_Click(object sender, EventArgs e)
@@ -136,11 +296,9 @@ namespace TimeLineUI_Proto_1
             {
                 l.Point1 = new Point(l.Point1.X + 1, l.Point1.Y);
                 l.Point2 = new Point(l.Point2.X + 1, l.Point2.Y);
-
-                smallIconPos = new Point(smallIconPos.X + 1, smallIconPos.Y);
             }
 
-            p1.Invalidate();
+            timeLinePicBox.Invalidate();
         }
 
         private void BtnTimeStop_Click(object sender, EventArgs e)
@@ -158,7 +316,7 @@ namespace TimeLineUI_Proto_1
             //}
 
             _Lines.Add(new TimeLineUI_Proto_1.TimeLineMain.Line(new Point(20, 0), new Point(20, 300)));
-            p1.Invalidate();
+            timeLinePicBox.Invalidate();
         }
     }
 }
