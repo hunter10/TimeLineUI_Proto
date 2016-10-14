@@ -21,7 +21,7 @@ namespace TimeLineUI_Proto_1
         public void DataGridViewInit()
         {
             dataGridView1.ColumnHeadersVisible = false;
-            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.RowHeadersVisible = true;
 
             //dataGridView3.ColumnHeadersVisible = false;
             dataGridView3.RowHeadersVisible = false;
@@ -63,7 +63,31 @@ namespace TimeLineUI_Proto_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Add("Object-1", true, false);
+            /*
+            ListViewItem lvi = new ListViewItem();
+            lvi.Text = "Object-1";
+            lvi.Name = "Name";
+            ListViewItem.ListViewSubItem subItem1 = new ListViewItem.ListViewSubItem(lvi, "Lock");
+            ListViewItem.ListViewSubItem subItem2 = new ListViewItem.ListViewSubItem(lvi, "View");
+
+            lvi.SubItems.Add(subItem1);
+            lvi.SubItems.Add(subItem2);
+            */
+            //dataGridView1.Rows.Add("Object-1", true, false);
+            //dataGridView1.Rows.Add(lvi);
+
+            List<TimeObject> childObj = new List<TimeObject>();
+            childObj.Add(new TimeObject() { Name = "child", Lock = true, View = false });
+
+            List<TimeObject> obj = new List<TimeObject>();
+            obj.Add(new TimeObject() { Name = "aaa", Lock = false, View = false, child = childObj });
+
+            var bindingList = new BindingList<TimeObject>(obj);
+            var source = new BindingSource(bindingList, null);
+            dataGridView1.DataSource = source;
+
+
+
             dataGridView2.Rows.Add("");
         }
 

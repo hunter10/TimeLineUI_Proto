@@ -11,5 +11,6 @@ namespace TimeLineUI_Proto_1
         public String Name { get; set; }
         public bool Lock { get; set; }
         public bool View { get; set; }
+        public List<TimeObject> child { get; set; }
     }
 }
