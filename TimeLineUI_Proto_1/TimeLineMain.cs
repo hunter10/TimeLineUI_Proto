@@ -76,6 +76,8 @@ namespace TimeLineUI_Proto_1
 
             // 이것때문에 PictureBox가 자동으로 스크롤됨
             flowLayoutPanel1.Controls.Add(timeLinePicBox);
+
+            //flowLayoutPanel1
         }
 
         private void BtnObjectAdd_Click(object sender, EventArgs e)
@@ -95,6 +97,8 @@ namespace TimeLineUI_Proto_1
             //timeObj_List[0].DrawIcon(g, timeObj_List[0].StartPosIcon, timeObj_List[0].StartPos);
             //timeObj_List[0].DrawIcon(g, timeObj_List[0].EndPosIcon, timeObj_List[0].EndPos);
             timeLinePicBox.Invalidate();
+
+            
         }
 
 
@@ -222,11 +226,23 @@ namespace TimeLineUI_Proto_1
                     
                     timeObj_List[0].StartPos = new Point(e.X - startposoffset, timeObj_List[0].StartPos.Y);
                     timeObj_List[0].EndPos = new Point(e.X + endposoffset, timeObj_List[0].EndPos.Y);
-
-                    
                 }
 
+
+                CheckFlowLayoutPanelBound(new Point(e.X, 0));
+
                 timeLinePicBox.Refresh();
+            }
+        }
+
+        private void CheckFlowLayoutPanelBound(Point p)
+        {
+            // 일단 오른쪽 옆면부터
+            int nEnd_Right = timeObj_List[0].EndPos.X + timeObj_List[0].EndPosIcon.Width;
+
+            if(nEnd_Right > flowLayoutPanel1.Width)
+            {
+                flowLayoutPanel1.AutoScrollPosition = new Point(nEnd_Right - flowLayoutPanel1.Width, 0);
             }
         }
 
@@ -244,12 +260,18 @@ namespace TimeLineUI_Proto_1
 
             mouseClicked = false;
 
+            Console.WriteLine(string.Format("MouseUp e.X:{0}", e.X));
+            Console.WriteLine(string.Format("EndPos.X :{0}", timeObj_List[0].EndPos.X));
+
             if (endPoint.X != -1)
             {
                 Point currentPoint = new Point(e.X, e.Y);
                 // Display coordinates
                 //X2.Text = e.X.ToString();
                 //Y2.Text = e.Y.ToString();
+
+                //Console.WriteLine(string.Format("MouseUp e:{0}", e));
+                //Console.WriteLine(string.Format("EndPos.X :{0}", timeObj_List[0].EndPos.X));
 
             }
             endPoint.X = -1;
@@ -317,6 +339,11 @@ namespace TimeLineUI_Proto_1
 
             _Lines.Add(new TimeLineUI_Proto_1.TimeLineMain.Line(new Point(20, 0), new Point(20, 300)));
             timeLinePicBox.Invalidate();
+        }
+
+        private void flowLayoutPanel1_Scroll(object sender, ScrollEventArgs e)
+        {
+
         }
     }
 }
